@@ -21,7 +21,7 @@ function modernizr() {
     revManifest = manifest.checkFile(revManifest, dist.scripts, 'modernizr.js');
     manifest.update(revManifest);
 
-    return gulp.src(folders.scripts + 'form.js')
+    return gulp.src(folders.scripts + 'validate.js')
         .on('end', utilities.logBegin('Modernizr'))
         .pipe(gulpModernizr(packageOptions.modernizr))
         .pipe(uglify(packageOptions.uglify))
