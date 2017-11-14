@@ -1,6 +1,6 @@
 {
     "name": "way2web-validate",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Validate forms with ajax.",
     "files": [
         "js/validate.js",
