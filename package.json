@@ -1,0 +1,61 @@
+{
+    "name": "way2web-validate",
+    "version": "0.1.0",
+    "description": "Validate forms with ajax.",
+    "files": [
+        "js/validate.js",
+        "dist/js/app.js"
+    ],
+    "main": "js/validate.js",
+    "repository": {
+        "type": "mercurial",
+        "url": "https://bitbucket.org/way2dev/way2web-validate"
+    },
+    "keywords": [
+        "javascript",
+        "validate",
+        "form",
+        "jQuery"
+    ],
+    "author": {
+        "name": "Way2Web",
+        "url": "https://www.way2web.nl/"
+    },
+    "license": "MIT",
+    "homepage": "https://bitbucket.org/way2dev/way2web-validate#readme",
+    "scripts": {
+        "build": "./bitbucket-pipelines/assets.sh",
+        "lint": "eslint js/*.js --config .eslintrc",
+        "publish-to-npm": "./bitbucket-pipelines/npm.sh"
+    },
+    "devDependencies": {
+        "autoprefixer": "6.7.2",
+        "babel-preset-es2015": "6.22.0",
+        "babel-register": "6.22.0",
+        "browser-sync": "2.18.7",
+        "del": "2.2.2",
+        "gulp": "gulpjs/gulp#4.0",
+        "gulp-autoprefixer": "3.1.1",
+        "gulp-babel": "7.0.0",
+        "gulp-concat": "2.6.1",
+        "gulp-data": "1.2.1",
+        "gulp-eslint": "3.0.1",
+        "gulp-modernizr": "1.0.0-alpha",
+        "gulp-rev": "7.1.2",
+        "gulp-sass": "3.1.0",
+        "gulp-sourcemaps": "2.4.1",
+        "gulp-stylelint": "3.7.0",
+        "gulp-uglify": "2.0.1",
+        "merge-stream": "1.0.1",
+        "node-notifier": "5.1.2",
+        "parse-filepath": "1.0.1",
+        "postcss-reporter": "1.3.3",
+        "postcss-urlrewrite": "0.2.1",
+        "rev-del": "1.0.5"
+    },
+    "dependencies": {
+        "axios": "^0.17.1",
+        "jquery": ">=3.2.1",
+        "modernizr": "3.3.1"
+    }
+}
