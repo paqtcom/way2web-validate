@@ -1,46 +1,58 @@
 /**
- * Validate a form with ajax.
- *
- * @param {object} $element
- *
- * @return {object}
+ * Validate forms with ajax.
  */
-function Way2Validate($element) {
+class Way2Validate {
     /**
-     * Global variables.
+     * Constructor.
      *
-     * @type {Object}
+     * @param {object} $element
      */
-    var globals = {
-        errors:     {},
-        formGroups: []
-    };
+    constructor($element) {
+        /** @type {string} */
+        this.version = '0.2.0';
 
-    var selectors = {
-        group: '.form-group',
-        input: '.form-control'
-    };
+        /**
+         * Global variables.
+         *
+         * @type {Object}
+         */
+        this.globals = {
+            errors:     {},
+            formGroups: []
+        };
 
-    var attributes = {
-        validate: 'validate',
-        method:   'method'
-    };
+        /**
+         * Selectors.
+         *
+         * @type {Object}
+         */
+        this.selectors = {
+            group: '.form-group',
+            input: '.form-control'
+        };
 
-    var classes = {
-        error: 'has-error',
-        help:  'help-block'
-    };
+        /**
+         * Attributes.
+         *
+         * @type {Object}
+         */
+        this.attributes = {
+            validate: 'validate',
+            method:   'method'
+        };
 
-    /**
-     * [init description]
-     *
-     * @return {object}
-     */
-    function init() {
-        $element.on('submit', send);
-        globals.formGroups = $element.find(selectors.input).closest(selectors.group);
+        /**
+         * Classes.
+         *
+         * @type {Object}
+         */
+        this.classes = {
+            error: 'has-error',
+            help:  'help-block'
+        };
 
-        return this;
+        this.element = $element;
+        this.element.on('submit', this.send.bind(this));
     }
 
     /**
@@ -48,41 +60,51 @@ function Way2Validate($element) {
      *
      * @param {object} event
      */
-    function send(event) {
-        var url = $(this).data(attributes.validate);
-        var method = $(this).attr(attributes.method);
-        var data = $(this).serialize();
+    send(event) {
+        this.element = $(event.target);
+        let url = this.element.data(this.attributes.validate);
+        let method = this.element.attr(this.attributes.method);
+        let data = this.element.serialize();
+
+        if(!url || !method) {
+            this.error();
+
+            return;
+        }
 
         axios({
             method:         method,
             url:            route(url),
             data:           data,
-            validateStatus: function(status) {
+            validateStatus: (status) => {
                 return status < 500;
             }
         })
-            .then(success)
-            .catch(error);
+            .then(this.success.bind(this))
+            .catch(this.error.bind(this));
 
         event.preventDefault();
     }
 
     /**
-     * success
+     * Handles a successful validation.
      *
      * @param {object} data
      */
-    function success(data) {
+    success(data) {
+        let formGroups = this.element.find(this.selectors.group);
+
         if(data.status == 200) {
-            globals.errors = {};
+            this.globals.errors = {};
 
-            $element.unbind('submit').submit();
+            this.element.unbind('submit').submit();
         } else {
-            globals.formGroups.removeClass(classes.error);
-            globals.formGroups.find('.' + classes.help).remove();
+            formGroups.removeClass(this.classes.error);
+            formGroups.find('.' + this.classes.help).remove();
 
-            globals.errors = data.data.errors;
-            $.each(data.data.errors, showErrors);
+            this.globals.errors = data.data.errors;
+
+            $.each(data.data.errors, this.showErrors.bind(this));
         }
     }
 
@@ -92,23 +114,21 @@ function Way2Validate($element) {
      * @param {string} field
      * @param {array}  errors
      */
-    function showErrors(field, errors) {
-        var fornGroup = $element.find($('input[name="' + field + '"]')).closest(selectors.group);
+    showErrors(field, errors) {
+        let formGroup = this.element
+            .find(this.selectors.input + '[name="' + field + '"]')
+            .closest(this.selectors.group);
 
-        fornGroup.addClass(classes.error);
-        fornGroup.append('<span class="' + classes.help + '"><strong>' + errors.join(', ') + '</strong></span>');
+        formGroup.addClass(this.classes.error);
+        formGroup.append('<span class="' + this.classes.help + '"><strong>' + errors.join(', ') + '</strong></span>');
     }
 
     /**
-     * Error
+     * Handles a validation error.
      *
      * @param {object} error
      */
-    function error(error) {
+    error(error) {
         console.error('error', error);
     }
-
-    return {
-        init: init
-    };
 }
