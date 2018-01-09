@@ -116,7 +116,10 @@ class Way2Validate {
      */
     showErrors(field, errors) {
         let formGroup = this.element
-            .find(this.selectors.input + '[name="' + field + '"]')
+            .find(
+                this.selectors.input + '[name="' + field + '"], ' +
+                this.selectors.input + '[name="' + field + '[]"]'
+            )
             .closest(this.selectors.group);
 
         formGroup.addClass(this.classes.error);

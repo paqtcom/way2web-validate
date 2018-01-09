@@ -131,7 +131,7 @@ var Way2Validate = function () {
     }, {
         key: 'showErrors',
         value: function showErrors(field, errors) {
-            var formGroup = this.element.find(this.selectors.input + '[name="' + field + '"]').closest(this.selectors.group);
+            var formGroup = this.element.find(this.selectors.input + '[name="' + field + '"], ' + this.selectors.input + '[name="' + field + '[]"]').closest(this.selectors.group);
 
             formGroup.addClass(this.classes.error);
             formGroup.append('<span class="' + this.classes.help + '"><strong>' + errors.join(', ') + '</strong></span>');
