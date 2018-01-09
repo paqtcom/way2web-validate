@@ -45,8 +45,7 @@ var Way2Validate = function () {
          * @type {Object}
          */
         this.attributes = {
-            url: 'validate-url',
-            method: 'method'
+            url: 'validate-url'
         };
 
         /**
@@ -75,17 +74,16 @@ var Way2Validate = function () {
         value: function send(event) {
             this.element = $(event.target);
             var url = this.element.data(this.attributes.url);
-            var method = this.element.attr(this.attributes.method);
             var data = this.element.serialize();
 
-            if (!url || !method) {
+            if (!url) {
                 this.error();
 
                 return;
             }
 
             axios({
-                method: method,
+                method: 'POST',
                 url: url,
                 data: data,
                 validateStatus: function validateStatus(status) {
