@@ -37,7 +37,8 @@ class Way2Validate {
          * @type {Object}
          */
         this.attributes = {
-            url: 'validate-url',
+            url:    'validate-url',
+            method: 'method'
         };
 
         /**
@@ -62,16 +63,17 @@ class Way2Validate {
     send(event) {
         this.element = $(event.target);
         let url = this.element.data(this.attributes.url);
+        let method = this.element.attr(this.attributes.method);
         let data = this.element.serialize();
 
-        if(!url) {
+        if(!url || !method) {
             this.error();
 
             return;
         }
 
         axios({
-            method:         'POST',
+            method:         method,
             url:            url,
             data:           data,
             validateStatus: (status) => {
