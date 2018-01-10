@@ -17,7 +17,7 @@ var Way2Validate = function () {
         _classCallCheck(this, Way2Validate);
 
         /** @type {string} */
-        this.version = '0.2.0';
+        this.version = '1.0.0';
 
         /**
          * Global variables.
@@ -45,7 +45,7 @@ var Way2Validate = function () {
          * @type {Object}
          */
         this.attributes = {
-            validate: 'validate',
+            url: 'validate-url',
             method: 'method'
         };
 
@@ -74,7 +74,7 @@ var Way2Validate = function () {
         key: 'send',
         value: function send(event) {
             this.element = $(event.target);
-            var url = this.element.data(this.attributes.validate);
+            var url = this.element.data(this.attributes.url);
             var method = this.element.attr(this.attributes.method);
             var data = this.element.serialize();
 
@@ -86,7 +86,7 @@ var Way2Validate = function () {
 
             axios({
                 method: method,
-                url: route(url),
+                url: url,
                 data: data,
                 validateStatus: function validateStatus(status) {
                     return status < 500;
@@ -131,7 +131,7 @@ var Way2Validate = function () {
     }, {
         key: 'showErrors',
         value: function showErrors(field, errors) {
-            var formGroup = this.element.find(this.selectors.input + '[name="' + field + '"]').closest(this.selectors.group);
+            var formGroup = this.element.find(this.selectors.input + '[name="' + field + '"], ' + this.selectors.input + '[name="' + field + '[]"]').closest(this.selectors.group);
 
             formGroup.addClass(this.classes.error);
             formGroup.append('<span class="' + this.classes.help + '"><strong>' + errors.join(', ') + '</strong></span>');
