@@ -6,7 +6,7 @@
 ## Test the package.
 
 To test the package, clone the package to your system.
-Than run this command.
+Then, run this command:
 
 ```
 npm run build
