@@ -9,7 +9,7 @@ class Way2Validate {
      */
     constructor($element) {
         /** @type {string} */
-        this.version = '0.2.0';
+        this.version = '1.0.0';
 
         /**
          * Global variables.
@@ -37,8 +37,8 @@ class Way2Validate {
          * @type {Object}
          */
         this.attributes = {
-            validate: 'validate',
-            method:   'method'
+            url:    'validate-url',
+            method: 'method'
         };
 
         /**
@@ -62,7 +62,7 @@ class Way2Validate {
      */
     send(event) {
         this.element = $(event.target);
-        let url = this.element.data(this.attributes.validate);
+        let url = this.element.data(this.attributes.url);
         let method = this.element.attr(this.attributes.method);
         let data = this.element.serialize();
 
@@ -74,7 +74,7 @@ class Way2Validate {
 
         axios({
             method:         method,
-            url:            route(url),
+            url:            url,
             data:           data,
             validateStatus: (status) => {
                 return status < 500;
@@ -116,7 +116,10 @@ class Way2Validate {
      */
     showErrors(field, errors) {
         let formGroup = this.element
-            .find(this.selectors.input + '[name="' + field + '"]')
+            .find(
+                this.selectors.input + '[name="' + field + '"], ' +
+                this.selectors.input + '[name="' + field + '[]"]'
+            )
             .closest(this.selectors.group);
 
         formGroup.addClass(this.classes.error);
