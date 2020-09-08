@@ -36,7 +36,7 @@ function onError(stream = false, error = false, errormessage = false, file = fal
     console.log('');
 
     notifier.notify({
-        'title': 'w2w build',
+        'title':   'w2w build',
         'message': 'Build error!'
     });
 

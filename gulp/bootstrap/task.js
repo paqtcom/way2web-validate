@@ -28,8 +28,7 @@ class Task {
 /*
 * Prefix a glob string with the base path
 */
-function prefixGlob (globItem, base) {
-
+function prefixGlob(globItem, base) {
     /*
      * Check if a glob string has an exclude flag, remove the flag from the glob string
      * and move it to the begin of the path

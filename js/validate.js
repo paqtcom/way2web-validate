@@ -9,7 +9,7 @@ class Way2Validate {
      */
     constructor($element) {
         /** @type {string} */
-        this.version = '1.0.0';
+        this.version = '1.1.0';
 
         /**
          * Global variables.
@@ -134,4 +134,8 @@ class Way2Validate {
     error(error) {
         console.error('error', error);
     }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Way2Validate;
 }
