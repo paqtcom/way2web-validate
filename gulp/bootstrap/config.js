@@ -4,15 +4,8 @@ import * as utilities from './utilities';
  * Default specfific package options
  */
 let packageOptions = {
-    uglify: {
-        options: {
-            compress: {
-                drop_console: true
-            }
-        }
-    },
+    uglify:    true,
     modernizr: {
-        'options': [],
         'tests': ['formattribute'],
         'crawl': false
     }
