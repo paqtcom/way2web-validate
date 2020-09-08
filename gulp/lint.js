@@ -20,7 +20,7 @@ function lintStyles() {
             gulpStylelint({
                 reporters: [{
                     formatter: 'string',
-                    console: true
+                    console:   true
                 }],
                 failAfterError: utilities.doContinue(true)
             })

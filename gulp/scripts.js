@@ -28,10 +28,10 @@ function scripts() {
             .pipe(utilities.initSourceMaps());
 
         if(task.options.babel) {
-            gulpTask = gulpTask.pipe(babel())
+            gulpTask = gulpTask.pipe(babel());
         }
 
-        gulpTask = gulpTask.pipe(concat(task.filename))
+        gulpTask = gulpTask.pipe(concat(task.filename));
 
         if(task.options.uglify) {
             gulpTask = gulpTask.pipe(
@@ -40,7 +40,7 @@ function scripts() {
 
                     utilities.onError(stream, error, error.cause.message, error.cause.filename);
                 })
-            )
+            );
         }
 
         gulpTask = gulpTask.pipe(utilities.writeSourceMaps())

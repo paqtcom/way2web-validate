@@ -16,17 +16,17 @@ import { packageOptions, gulpOptions } from './gulp/bootstrap/config';
 
 const paths = {
     root: './',
-    dist: `./dist/`
+    dist: './dist/'
 };
 
 export const folders = {
     scripts: `${paths.root}js/`,
-    test: `${paths.root}test/`,
-    npm: 'node_modules/'
+    test:    `${paths.root}test/`,
+    npm:     'node_modules/'
 };
 
 export const dist = {
-    root: `${paths.dist}`,
+    root:    `${paths.dist}`,
     scripts: `${paths.dist}js/`
 };
 
@@ -57,12 +57,12 @@ export const taskConfig = {
     scripts: [
         new Task(
             [
-                'jquery/dist/jquery.js',
+                'jquery/dist/jquery.js'
             ],
             folders.npm,
             dist.scripts + 'vendor.js',
             {
-                babel: false,
+                babel:  false,
                 uglify: true
             }
         ),
@@ -73,7 +73,7 @@ export const taskConfig = {
             folders.scripts,
             dist.scripts + 'app.js',
             {
-                babel: true,
+                babel:  true,
                 uglify: false
             }
         )
@@ -84,7 +84,7 @@ export const taskConfig = {
             folders.test,
             dist.root
         )
-    ],
+    ]
 };
 
 /*
