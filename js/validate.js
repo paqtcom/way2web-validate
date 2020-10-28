@@ -9,7 +9,7 @@ class Way2Validate {
      */
     constructor($element) {
         /** @type {string} */
-        this.version = '1.1.0';
+        this.version = '2.0.0';
 
         /**
          * Global variables.
