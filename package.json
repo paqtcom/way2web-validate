@@ -1,63 +1,57 @@
 {
     "name": "way2web-validate",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Validate forms with ajax.",
     "files": [
         "js/validate.js",
-        "dist/js/app.js"
+        "dist/js/app.js",
+        "dist/validate.js",
+        "dist/validate.js.map",
+        "dist/validate.module.js",
+        "dist/validate.module.js.map",
+        "dist/validate.modern.js",
+        "dist/validate.modern.js.map",
+        "dist/validate.umd.js",
+        "dist/validate.umd.js.map"
     ],
-    "main": "js/validate.js",
+    "source": "js/validate.js",
+    "main": "dist/validate.js",
+    "module": "dist/validate.module.js",
+    "unpkg": "dist/validate.umd.js",
     "repository": {
-        "type": "mercurial",
-        "url": "https://bitbucket.org/way2dev/way2web-validate"
+        "type": "git",
+        "url": "https://github.com/Way2web/way2web-validate.git"
     },
     "keywords": [
         "javascript",
         "validate",
-        "form",
-        "jQuery"
+        "form"
     ],
     "author": {
         "name": "Way2Web",
         "url": "https://www.way2web.nl/"
     },
     "license": "MIT",
-    "homepage": "https://bitbucket.org/way2dev/way2web-validate#readme",
+    "homepage": "https://github.com/Way2web/way2web-validate.git#readme",
     "scripts": {
-        "build": "node_modules/gulp/bin/gulp.js",
+        "build": "microbundle",
+        "dev": "microbundle watch",
         "lint": "eslint js/*.js --config .eslintrc",
         "publish-to-npm": "./bitbucket-pipelines/npm.sh"
     },
     "devDependencies": {
+        "@babel/core": "^7.11.6",
         "@babel/preset-env": "^7.11.5",
         "@babel/register": "^7.11.5",
-        "autoprefixer": "^9.8.6",
-        "browser-sync": "^2.26.12",
-        "del": "^5.1.0",
-        "gulp": "^4.0",
-        "gulp-autoprefixer": "^7.0.1",
-        "gulp-babel": "^8.0.0",
-        "gulp-concat": "^2.6.1",
-        "gulp-data": "^1.3.1",
-        "gulp-eslint": "^6.0.0",
-        "gulp-modernizr": "^4.0.1",
-        "gulp-rev": "^9.0.0",
-        "gulp-sass": "^4.1.0",
-        "gulp-sourcemaps": "^2.6.5",
-        "gulp-stylelint": "^13.0.0",
-        "gulp-uglify": "^3.0.2",
-        "gulp-util": "^3.0.8",
-        "merge-stream": "^2.0.0",
-        "node-notifier": "^8.0.0",
-        "parse-filepath": "^1.0.2",
-        "postcss-reporter": "^6.0.1",
-        "postcss-urlrewrite": "^0.2.2",
-        "rev-del": "^2.0.0",
-        "stylelint": "^13.7.0"
+        "babel-core": "^7.0.0-bridge.0",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "microbundle": "^0.12.3",
+        "prettier": "^1.19.1"
     },
     "dependencies": {
         "axios": "^0.20.0",
-        "jquery": ">=3.2.1",
         "modernizr": "^3.11.3"
     }
 }
