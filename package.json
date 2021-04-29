@@ -37,7 +37,7 @@
         "build": "microbundle",
         "dev": "microbundle watch",
         "lint": "eslint js/*.js --config .eslintrc",
-        "publish-to-npm": "./bitbucket-pipelines/npm.sh"
+        "publish-to-npm": "./.github/workflows/npm-publish.yml"
     },
     "devDependencies": {
         "@babel/core": "^7.11.6",
@@ -51,7 +51,7 @@
         "prettier": "^1.19.1"
     },
     "dependencies": {
-        "axios": "^0.20.0",
+        "axios": "^0.21.1",
         "modernizr": "^3.11.3"
     }
 }
